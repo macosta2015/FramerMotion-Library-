@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 const Home = () => {
   return (
     <motion.div className="home container"
-      animate={{}}
+      inital={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
       <motion.h2 
       animate={{}}>
@@ -13,7 +14,7 @@ const Home = () => {
       </motion.h2>
       <Link to="/base">
         <motion.button
-          animate={{scale: 1.5}}
+          animate={{}}
         >
           Create Your Pizza
         </motion.button>
