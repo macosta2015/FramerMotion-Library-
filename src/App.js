@@ -5,11 +5,13 @@ import Home from './components/Home';
 import Base from './components/Base';
 import Toppings from './components/Toppings';
 import Order from './components/Order';
+import Modal from './components/Modal';
 import { AnimatePresence } from 'framer-motion'
 
 function App() {
   const location = useLocation();
   const [pizza, setPizza] = useState({ base: "", toppings: [] });
+  const [showModal, setShowModal] = useState(false);
 
   const addBase = (base) => {
     setPizza({ ...pizza, base })
@@ -28,23 +30,24 @@ function App() {
   return (
     <>
       <Header />
-      {/* exitBeforeEnter is used so that no component enters before the other one does enter.  */}
-      <AnimatePresence exitBeforeEnter>
-        <Switch location={location} key={location.key}>
-          <Route path="/base">
-            <Base addBase={addBase} pizza={pizza} />
-          </Route>
-          <Route path="/toppings">
-            <Toppings addTopping={addTopping} pizza={pizza} />
-          </Route>
-          <Route path="/order">
-            <Order pizza={pizza} />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </AnimatePresence>
+      <Modal showModal={showModal} setShowModal={setShowModal}/>
+        <AnimatePresence exitBeforeEnter> {/* exitBeforeEnter is used so that no component enters before the other one does enter.  */}
+          <Switch location={location} key={location.key}>
+            <Route path="/base">
+              <Base addBase={addBase} pizza={pizza} />
+            </Route>
+            <Route path="/toppings">
+              <Toppings addTopping={addTopping} pizza={pizza} />
+            </Route>
+            <Route path="/order">
+              <Order pizza={pizza} setShowModal={setShowModal} />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </AnimatePresence>
+        {/* </Modal> */}
     </>
   );
 }
