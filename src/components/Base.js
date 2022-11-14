@@ -9,7 +9,23 @@ const containerVariants = {
   },
   visible: {
     opacity: 1,
-    x: 0
+    x: 0,
+    transition: {
+      type: 'spring', 
+      delay:0.5
+    }
+  }
+}
+
+const nextVariants = {
+  hidden: {
+    x: '-100vw'
+  },
+  visible: {
+    x: 0,
+    transition: {
+      type: 'spring', 
+      stiffness: 120}
   }
 }
 
@@ -23,7 +39,7 @@ const Base = ({ addBase, pizza }) => {
       animate="visible" //After we arrive to the animation
       // initial={{ x: '100vw'}}
       // animate={{ x:0 }}
-      transition={{ type: 'spring', delay:0.5}}
+      // transition={{ type: 'spring', delay:0.5}}
     >
 
       <h3>Step 1: Choose Your Base</h3>
@@ -43,9 +59,12 @@ const Base = ({ addBase, pizza }) => {
 
       {pizza.base && (
         <motion.div className="next"
-          initial={{ x: '-100vw' }}
-          animate={{ x:0 }}
-          transition={{ type: 'spring', stiffness: 120}}
+          variants={nextVariants}
+          initial="hidden"
+          animate="visible"
+          // initial={{ x: '-100vw' }}
+          // animate={{ x:0 }}
+          // transition={{ type: 'spring', stiffness: 120 }}
         >
           <Link to="/toppings">
             <motion.button
