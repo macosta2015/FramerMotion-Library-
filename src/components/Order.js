@@ -17,6 +17,10 @@ const containerVariants = {
       when: "beforeChildren", // This firsts needs to be animated and then the children go,
       staggerChildren: 0.4
     }
+  },
+  exit: {
+    x: "-100vw",
+    transition: { ease: 'easeInOut' }
   }
 }
 
@@ -40,16 +44,11 @@ const Order = ({ pizza }) => {
       variants={containerVariants}
       initial="hidden" //Initial animation
       animate="visible" //After we arrive to the animation
+      exit="exit"
     >
-      <AnimatePresence>
-        {/* It is the conditional output that after 4 seconds, the code will be run.  */}
-        { showTitle && (
-        <motion.h2
-          //We use the exit attribute to animate what we want to get out.
-          exit={{ y: -1000 }}
-        >Thank you for your order :)</motion.h2>
-      )}
-      </AnimatePresence>
+
+        <h2>Thank you for your order :)</h2>
+
 
       {/* We do not need to declare them becuase they are being propragrated from the parent. 
       They have the same parent.  */}
