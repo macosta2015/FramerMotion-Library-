@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Loader from './Loader';
 
 const buttonVariants = {
   hover: {
@@ -10,7 +11,8 @@ const buttonVariants = {
     transition: {
       // yoyo: 10 //10 repetitions
       duration: 0.5,
-      yoyo: Infinity
+      yoyo: Infinity,
+      ease: 'easeOut'
     }
   }
 }
@@ -46,6 +48,7 @@ const Home = () => {
           Create Your Pizza
         </motion.button>
       </Link>
+      <Loader />
     </motion.div>
   )
 }
